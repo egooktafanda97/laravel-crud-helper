@@ -1,0 +1,9 @@
+{
+    "Test": true,
+    "Generator": true,
+    "Admin": true,
+    "Site": true,
+    "Api": true,
+    "Mahasiswa": true,
+    "Website": true
+}

@@ -24,7 +24,8 @@ trait Migrations
          * BUAT PRIMARY KEY BIG INCREMENT
          */
         $table->bigIncrements($this->model->primary);
-        $table->uuid('uuid')->default(\DB::raw('(UUID())'));
+        $table->uuid('uid')->default(\DB::raw('(UUID())'));
+
         foreach ($data as $m) {
             /** 
              * AMBIL ITEM MIGRASI PADA DATA
@@ -93,8 +94,8 @@ trait Migrations
     }
     public function getSoftDeletesStatus()
     {
-        if (!array_key_exists('softdeletes', $this->resource))
+        if (empty($this->model->deleted_at) || !$this->model->deleted_at)
             return false;
-        return $this->Init["softdeletes"];
+        return true;
     }
 }

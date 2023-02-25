@@ -11,44 +11,74 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\Permission\Traits\HasRoles;
-
-use Illuminate\Database\Eloquent\Model;
+/*
+|--------------------------------------------------------------------------
+| CLASS TAMBAHAN
+*/
+use App\Service\Kernel\Controller;
+use App\Service\Traits\ManagementModel;
+use Api\Http\Module\Instansi\Scema\init;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
+
+/*
+| end 
+|--------------------------------------------------------------------------
+*/
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
+    use ManagementModel;
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    use SoftDeletes;
+    public function __construct(array $attributes = [])
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | INSTANCE MODEL GENERATE
+        */
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+        $control = new Controller(\Scema\Users::class);
+        /*
+        | end 
+        |--------------------------------------------------------------------------
+        */
+        /*
+        |--------------------------------------------------------------------------
+        | SETTER DATA MODEL
+        */
+        $this->fillable = array_merge($control->getFild());
+        $this->table = $control->model->table;
+        $this->primaryKey = $control->model->primary;
+        /*
+        | end
+        |--------------------------------------------------------------------------
+
+        /*
+        |--------------------------------------------------------------------------
+        | CREATE PROTECTED MODEL
+        */
+        if (!empty($control->model->protected)) {
+            foreach ($control->model->protected as $name_protect => $protect) {
+                $this->{$name_protect} = $protect;
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | CREATE RELATION FUNCTION
+        */
+        $this->initial_function_relationship($this, $control);
+        $this->initial_function_relationship_trashed($this, $control);
+        /*
+        | end
+        |--------------------------------------------------------------------------
+        */
+
+        parent::__construct($attributes);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

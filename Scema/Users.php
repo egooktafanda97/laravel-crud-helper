@@ -3,26 +3,44 @@
 namespace Scema;
 
 
-use App\Service\Classes\ModelActions;
+use App\Service\Classes\Models;
 
 use App\Service\Polymorphism\Scema;
 
 
 
-class Users extends ModelActions implements Scema
+class Users extends Models implements Scema
 {
 
     public $name = "user";
     public $table = "users";
     public $model = "User";
+    public $deleted_at = true;
     /*
     |   NAMA CONTROLLER
     */
-    public $controller = "UserController";
+    // public $controller_location = "\Api\Http\Module\Instansi\Controller\\";
+    // public $controller = "UserController";
+    public $model_name = "Users";
+    public $model_location = "\App\Models\\";
+    /** 
+     * ^END MODEL CONFIG 
+     */
     /*
     |   EMD NAMA CONTROLLER
     */
     public $name_space = [];
+
+    public $protected = [
+        "hidden" => [
+            'password',
+            'uuid',
+            'remember_token',
+        ],
+        "casts" => [
+            'email_verified_at' => 'datetime',
+        ]
+    ];
 
     public function __construct()
     {

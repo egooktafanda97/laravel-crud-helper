@@ -3,25 +3,38 @@
 namespace Scema;
 
 
-use App\Service\Classes\ModelActions;
+use App\Service\Classes\Models;
 use App\Service\Polymorphism\Scema;
 
-
-
-class Instansi extends ModelActions implements Scema
+class Instansi extends Models implements Scema
 {
-
+    // !=============================INISIASI===============================>
     public $name = "instansi";
     public $table = "instansi";
-    public $model_name = "Instansi";
-    /*
-    |   NAMA CONTROLLER
-    */
+
+    public $deleted_at = true;
+
+    // public $primary = "id";
+    // ^END
+    // !=============================CONTROLLER===============================>
+    // * ORIGINAL PATH CONTROLLER
+    public $controller_location = "\Api\Http\Module\Instansi\Controller\\";
+
+    // * NAMA CONTROLLER
     public $controller = "InstansiController";
-    /*
-    |   EMD NAMA CONTROLLER
-    */
+    /**
+     * ^END NAMA CONTROLLER 
+     */
+    // !===============================MODEL==============================>
+    public $model_name = "Instansi";
+    public $model_location = "\Api\Http\Module\Instansi\Models\\";
+    /** 
+     * ^END MODEL CONFIG 
+     */
     public $name_space = [];
+    public $protected = [
+        "hidden" => ["uuid"],
+    ];
 
     public function __construct()
     {
@@ -49,10 +62,10 @@ class Instansi extends ModelActions implements Scema
                 /** REQUET INPUT ATAU OTOMATIS TERISI */
                 "request" => false,
                 /** DEFENISIKAN RELASI DATA JIKA FILD FOREIGN KEY */
-                "relation" => ModelActions::def_relation("users", "users", "users", "id", true)
+                "relation" => Models::def_relation("users", "users", "users", "id", true)
             ],
             [
-                "name" => "nama",
+                "name" => "name",
                 "label" => "",
                 "type" => "string",
                 "request" => true,
@@ -64,7 +77,7 @@ class Instansi extends ModelActions implements Scema
                 "label" => "",
                 "type" => "static",
                 "value" => "pending",
-                "request" => true,
+                "request" => false,
                 "migration" => $this->migrate->newTemplate("str_null_10"),
                 "validate" => "string|nullable",
             ]
@@ -101,24 +114,30 @@ class Instansi extends ModelActions implements Scema
     public function api_router(): array
     {
         return   [
-            "get" => ModelActions::def_router("get", "instansi", "/", $this->middleware->getTemplate("api_admin"), $this->controller_location . $this->controller),
-            "getById" => ModelActions::def_router(
-                "get",
-                "instansi",
-                "/id/{slug}",
-                $this->middleware->getTemplate("api_admin"),
-                $this->controller_location . $this->controller,
-            ),
-            "getByAuth" => [
+            "get" => [
                 "method" => "get",
-                "router" => "/show",
+                "router" => "/",
                 "prefix" => "instansi",
                 "middleware" => $this->middleware->getTemplate("api_admin"),
                 "controller" => $this->controller_location . $this->controller,
             ],
-            "getByIdAndSource" => [
+            "getById" => [
                 "method" => "get",
-                "router" => "/source/{slug}",
+                "router" => "/id/{args}",
+                "prefix" => "instansi",
+                "middleware" => $this->middleware->getTemplate("api_admin"),
+                "controller" => $this->controller_location . $this->controller,
+            ],
+            "getByUid" => [
+                "method" => "get",
+                "router" => "/uid/{args}",
+                "prefix" => "instansi",
+                "middleware" => $this->middleware->getTemplate("api_admin"),
+                "controller" => $this->controller_location . $this->controller,
+            ],
+            "getByAuth" => [
+                "method" => "get",
+                "router" => "/me",
                 "prefix" => "instansi",
                 "middleware" => $this->middleware->getTemplate("api_admin"),
                 "controller" => $this->controller_location . $this->controller,
@@ -137,9 +156,16 @@ class Instansi extends ModelActions implements Scema
                 "middleware" => $this->middleware->getTemplate("api_admin"),
                 "controller" => $this->controller_location . $this->controller,
             ],
-            "delete" => [
+            "destroy" => [
                 "method" => "delete",
-                "router" => "/delete/{id}",
+                "router" => "/destroy/{id}",
+                "prefix" => "instansi",
+                "middleware" => $this->middleware->getTemplate("api_admin"),
+                "controller" => $this->controller_location . $this->controller,
+            ],
+            "getTemp" => [
+                "method" => "get",
+                "router" => "/restore",
                 "prefix" => "instansi",
                 "middleware" => $this->middleware->getTemplate("api_admin"),
                 "controller" => $this->controller_location . $this->controller,

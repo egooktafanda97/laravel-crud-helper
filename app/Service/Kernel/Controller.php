@@ -43,10 +43,13 @@ class Controller
 
     public $result = false;
 
-    public function __construct($model)
+    public function __construct($model, $scema_path = null)
     {
         $tipe = gettype($model);
         $this->model = $tipe == 'string' ? new $model() : new $model;
+        if (!empty($scema_path)) {
+            $this->path_mresource_model = $scema_path;
+        }
     }
     public function getResult()
     {

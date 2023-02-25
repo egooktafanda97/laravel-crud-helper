@@ -29,6 +29,19 @@ trait ManagementModel
             }
         }
     }
+    public function initial_function_relationship_trashed($model, $instace)
+    {
+        if ($instace->model->relation()) {
+            foreach ($instace->model->relation() as $f_model => $model_name) {
+                $RelationShip = $instace->getRelationByMethod($model_name);
+                if ($RelationShip) {
+                    $model->addDynamicRelation($f_model . '_trashed', function ($this_model) use ($RelationShip) {
+                        return $this_model->{$RelationShip["relation"]}($RelationShip["model"])->withTrashed();
+                    });
+                }
+            }
+        }
+    }
 
 
     public function getActivitylogOptions()

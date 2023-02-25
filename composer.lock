@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ced1d57885a86d44fd9a0c0a1f6cf3d4",
+    "content-hash": "a8a627f1e6e3774f99826dc876e23b18",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -492,6 +492,51 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "ferdhika31/laravel-lang-id",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ferdhika31/laravel-lang-id.git",
+                "reference": "41b8cf24ae1d0500bd79b520803ca74ba2b764f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ferdhika31/laravel-lang-id/zipball/41b8cf24ae1d0500bd79b520803ca74ba2b764f7",
+                "reference": "41b8cf24ae1d0500bd79b520803ca74ba2b764f7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.4"
+            },
+            "type": "language",
+            "autoload": {
+                "psr-4": {
+                    "Ferdhika31\\LaravelLangID\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ferdhika Yudira",
+                    "email": "rpl4rt08@gmail.com"
+                }
+            ],
+            "description": "Indonesian language localization for Laravel 5.4",
+            "keywords": [
+                "indonesian",
+                "laravel",
+                "localization"
+            ],
+            "support": {
+                "issues": "https://github.com/ferdhika31/laravel-lang-id/issues",
+                "source": "https://github.com/ferdhika31/laravel-lang-id/tree/master"
+            },
+            "time": "2018-08-28T03:45:02+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -1321,6 +1366,51 @@
                 }
             ],
             "time": "2022-07-05T13:51:54+00:00"
+        },
+        {
+            "name": "laravel-lang/lang",
+            "version": "7.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "679a65755db37b35acd36a5e0ca51e055815a00a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/679a65755db37b35acd36a5e0ca51e055815a00a",
+                "reference": "679a65755db37b35acd36a5e0ca51e055815a00a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "suggest": {
+                "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laravel-Lang Team"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Lang/lang/issues",
+                "source": "https://github.com/Laravel-Lang/lang/tree/7.0.9"
+            },
+            "time": "2020-11-30T20:35:41+00:00"
         },
         {
             "name": "laravel/framework",

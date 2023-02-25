@@ -13,4 +13,8 @@ trait Modeling
         }
         return $arr;
     }
+    public function getModel()
+    {
+        return $this->model->model_location . $this->model->model_name;
+    }
 }

@@ -9,10 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ferdhika31/laravel-lang-id": "^0.2.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "i-rocky/eloquent-dynamic-relation": "^1.0",
         "intervention/image": "dev-master",
+        "laravel-lang/lang": "~7.0",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
@@ -36,6 +38,7 @@
             "App\\": "app/",
             "Modules\\": "Modules/",
             "Scema\\": "Scema/",
+            "Api\\": "Api/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },

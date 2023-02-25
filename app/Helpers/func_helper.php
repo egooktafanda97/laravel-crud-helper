@@ -25,7 +25,13 @@ if (!function_exists("from_camel_case")) {
         return implode('_', $ret);
     }
 }
-
+if (!function_exists("random_int")) {
+    function random_int($digits = 4)
+    {
+        $kode = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+        return $kode;
+    }
+}
 
 if (!function_exists("table_roler")) {
     function table_roler($item, $items, $ky)

@@ -79,6 +79,8 @@ trait MInsert
                     }
                 }
 
+
+
                 $modeling = $this->getNameSpaceModel($this->model->model_name);
                 $inserts = new $modeling($result_data);
                 $inserts->save();
@@ -111,6 +113,8 @@ trait MInsert
                     "error" => $th->getMessage(),
                 ];
             }
+        } else {
+            $this->result = $result_data;
         }
     }
     public function setInsert($save)

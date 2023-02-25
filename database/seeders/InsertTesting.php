@@ -20,7 +20,7 @@ class InsertTesting extends Seeder
          * INSERT FUNCTION
          */
         $control = new Controller(\Scema\Instansi::class);
-        $control->initRouter("api");
+        // $control->initRouter("api");
 
 
         $control->insert($req);

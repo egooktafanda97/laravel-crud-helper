@@ -20,6 +20,8 @@ class Instansi extends Migration
         Schema::create(strtoupper(from_camel_case('Instansi')), function (Blueprint $table) use ($migrate) {
             $migrate->migration($table);
             $table->timestamps();
+            if ($migrate->getSoftDeletesStatus())
+                $table->softDeletes();
         });
     }
 

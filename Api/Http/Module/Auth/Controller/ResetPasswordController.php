@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Api\App\Controller as AppController;
 
 use Api\Http\Module\Instansi\Scema\init;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ResetPasswordController extends AppController
 {
@@ -29,8 +32,8 @@ class ResetPasswordController extends AppController
                 $email = $this->scema->getModel()::whereEmail($request->email)->first();
                 if (!$email)
                     return response()->json(["error" => "email not found"], 401);
-                $token = \Str::random(64);
-                \DB::table('password_resets')->insert([
+                $token = Str::random(64);
+                DB::table('password_resets')->insert([
                     'email' => $request->email,
                     'token' => $token,
                     'created_at' => Carbon::now()
@@ -67,7 +70,7 @@ class ResetPasswordController extends AppController
             $token = $request->token;
             $email = $request->email;
 
-            $Q = \DB::table('password_resets')->where([
+            $Q = DB::table('password_resets')->where([
                 "email" => $email,
                 "tokon" => $token
             ])->first();
